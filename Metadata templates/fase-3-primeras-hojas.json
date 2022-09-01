@@ -1,0 +1,15 @@
+{
+    "name": "Primeras hojas",
+    "description": "Flor NFT comienza a tener sus primmeras hojas",
+    "image": "https://ipfs.io/ipfs/QmYdwSMy4B6Pc3AnJa5bLJeUgidywzRtv74pzZsqqi2vBX/fase-3-CR.jpeg",
+    "attributes": [
+        {
+            "trait-type": "EtapaFLor",
+            "value": "Primeras Hojas"
+        },
+        {
+            "trait-type": "ColorFlor",
+            "value": "VERDE"
+        }
+    ]
+}

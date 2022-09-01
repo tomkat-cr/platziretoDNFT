@@ -11,11 +11,28 @@ contract keeperFlower is ERC721, ERC721URIStorage, KeeperCompatibleInterface {
 
     Counters.Counter public tokenIdCounter;
  
-   // Metadata information for each stage of the NFT on IPFS.
+    // Metadata information for each stage of the NFT on IPFS.
+
+    // string[] IpfsUri = [
+    //     "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/seed.json",
+    //     "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/purple-sprout.json",
+    //     "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/purple-blooms.json"
+    // ]; 
+
+    // string[] IpfsUri = [
+    //     "https://gateway.pinata.cloud/ipfs/QmQrzxt1fvzoR6J91FTe58dd8Dg79CfPmPKhzhkDZKS1xP",
+    //     "https://gateway.pinata.cloud/ipfs/QmTKVv4r72WzBpeKxiCNMsasMaLHJMJs6m32ybsj7rEmZb",
+    //     "https://gateway.pinata.cloud/ipfs/QmPt8H5YRZ1AhYzzjLoSL6FpPvmRo49MVfSz15q4z1P9FR"
+    // ]; 
+
     string[] IpfsUri = [
-        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/seed.json",
-        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/purple-sprout.json",
-        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/purple-blooms.json"
+        "https://ipfs.io/ipfs/QmPTMrL2rBnUQnXvLabaNaavkb9rRpZG15ghQmErULcsJh?filename=fase-1-semilla.json",
+        "https://ipfs.io/ipfs/QmRPdxcWZUJkw5LW6XNzjwk9GaUh1bCunxJeqNhXoWuKc7?filename=fase-2-germinando.json",
+        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/fase-3-primeras-hojas.json"
+        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/fase-4-creciendo-1.json"
+        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/fase-5-creciendo-2.json"
+        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/fase-6-florecida.json"
+        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/fase-7-frutos.json"
     ]; 
 
     uint256 lastTimeStamp;
@@ -68,17 +85,24 @@ contract keeperFlower is ERC721, ERC721URIStorage, KeeperCompatibleInterface {
     function flowerStage(uint256 _tokenId) public view returns (uint256) {
         string memory _uri = tokenURI(_tokenId);
         // Seed
-        if (compareStrings(_uri, IpfsUri[0])) {
-            return 0;
+        // if (compareStrings(_uri, IpfsUri[0])) {
+        //     return 0;
+        // }
+        // // Sprout
+        // if (
+        //     compareStrings(_uri, IpfsUri[1]) 
+        // ) {
+        //     return 1;
+        // }
+        // // Must be a Bloom
+        // return 2;
+        uint8 _flowerStages = 7;
+        for (uint _i = 0; _i < _flowerStages; _i++) {
+            if (compareStrings(_uri, IpfsUri[_i])) {
+                return _i;
+            }
         }
-        // Sprout
-        if (
-            compareStrings(_uri, IpfsUri[1]) 
-        ) {
-            return 1;
-        }
-        // Must be a Bloom
-        return 2;
+        return _flowerStages-1;
     }
 
     // helper function to compare strings

@@ -1,0 +1,15 @@
+{
+    "name": "Flor Sigue Creciendo",
+    "description": "Flor NFT ya se está poniendo más grande",
+    "image": "https://ipfs.io/ipfs/QmYdwSMy4B6Pc3AnJa5bLJeUgidywzRtv74pzZsqqi2vBX/fase-5-CR.jpeg",
+    "attributes": [
+        {
+            "trait-type": "EtapaFLor",
+            "value": "Creciendo más y más"
+        },
+        {
+            "trait-type": "ColorFlor",
+            "value": "VERDE"
+        }
+    ]
+}

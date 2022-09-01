@@ -1,0 +1,15 @@
+{
+    "name": "Flor con Frutos",
+    "description": "Flor NFT da sus primeros frutos",
+    "image": "https://ipfs.io/ipfs/QmYdwSMy4B6Pc3AnJa5bLJeUgidywzRtv74pzZsqqi2vBX/fase-7-CR.jpeg",
+    "attributes": [
+        {
+            "trait-type": "EtapaFLor",
+            "value": "Frutos"
+        },
+        {
+            "trait-type": "ColorFlor",
+            "value": "ROJO"
+        }
+    ]
+}
