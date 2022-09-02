@@ -1,10 +1,10 @@
 //Begin
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.6;
+pragma solidity >= 0.8.9;
 
 import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
-import "@openzeppelin/contracts@4.6.0/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts@4.6.0/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract keeperFlower is ERC721, ERC721URIStorage, KeeperCompatibleInterface {
     using Counters for Counters.Counter;
@@ -12,19 +12,20 @@ contract keeperFlower is ERC721, ERC721URIStorage, KeeperCompatibleInterface {
     Counters.Counter public tokenIdCounter;
  
     // Metadata information for each stage of the NFT on IPFS.
-
     string[] IpfsUri = [
         "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-1-semilla.json",
         "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-2-germinando.json",
-        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-3-primeras-hojas.json"
-        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-4-creciendo-1.json"
-        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-5-creciendo-2.json"
-        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-6-florecida.json"
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-3-primeras-hojas.json",
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-4-creciendo-1.json",
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-5-creciendo-2.json",
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-6-florecida.json",
         "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-7-frutos.json"
     ]; 
 
     uint256 lastTimeStamp;
     uint256 interval;
+
+    uint8 MAX_FLOWER_STAGES = 7;
 
     constructor(uint _interval) ERC721("Flower Tomkat_CR", "dFCR1") {
         interval = _interval; // in seconds
@@ -34,7 +35,7 @@ contract keeperFlower is ERC721, ERC721URIStorage, KeeperCompatibleInterface {
     function checkUpkeep(bytes calldata /* checkData */) external view override returns (bool upkeepNeeded, bytes memory /* performData */) {
         uint256 tokenId = tokenIdCounter.current() - 1;
         bool done;
-        if (flowerStage(tokenId) >= 2) {
+        if (flowerStage(tokenId) >= MAX_FLOWER_STAGES-1) {
             done = true;
         }
 
@@ -60,7 +61,7 @@ contract keeperFlower is ERC721, ERC721URIStorage, KeeperCompatibleInterface {
     }
 
     function growFlower(uint256 _tokenId) public {
-        if(flowerStage(_tokenId) >= 2){return;}
+        if(flowerStage(_tokenId) >= (MAX_FLOWER_STAGES-1)){return;}
         // Get the current stage of the flower and add 1
         uint256 newVal = flowerStage(_tokenId) + 1;
         // store the new URI
@@ -84,13 +85,12 @@ contract keeperFlower is ERC721, ERC721URIStorage, KeeperCompatibleInterface {
         // }
         // // Must be a Bloom
         // return 2;
-        uint8 _flowerStages = 7;
-        for (uint _i = 0; _i < _flowerStages; _i++) {
+        for (uint _i = 0; _i < MAX_FLOWER_STAGES; _i++) {
             if (compareStrings(_uri, IpfsUri[_i])) {
                 return _i;
             }
         }
-        return _flowerStages-1;
+        return MAX_FLOWER_STAGES-1;
     }
 
     // helper function to compare strings
@@ -119,6 +119,10 @@ contract keeperFlower is ERC721, ERC721URIStorage, KeeperCompatibleInterface {
         returns (string memory)
     {
         return super.tokenURI(tokenId);
+    }
+
+    function getInterval() public view returns(uint256) {
+        return interval;
     }
 }
 //End
