@@ -13,33 +13,21 @@ contract keeperFlower is ERC721, ERC721URIStorage, KeeperCompatibleInterface {
  
     // Metadata information for each stage of the NFT on IPFS.
 
-    // string[] IpfsUri = [
-    //     "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/seed.json",
-    //     "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/purple-sprout.json",
-    //     "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/purple-blooms.json"
-    // ]; 
-
-    // string[] IpfsUri = [
-    //     "https://gateway.pinata.cloud/ipfs/QmQrzxt1fvzoR6J91FTe58dd8Dg79CfPmPKhzhkDZKS1xP",
-    //     "https://gateway.pinata.cloud/ipfs/QmTKVv4r72WzBpeKxiCNMsasMaLHJMJs6m32ybsj7rEmZb",
-    //     "https://gateway.pinata.cloud/ipfs/QmPt8H5YRZ1AhYzzjLoSL6FpPvmRo49MVfSz15q4z1P9FR"
-    // ]; 
-
     string[] IpfsUri = [
-        "https://ipfs.io/ipfs/QmPTMrL2rBnUQnXvLabaNaavkb9rRpZG15ghQmErULcsJh?filename=fase-1-semilla.json",
-        "https://ipfs.io/ipfs/QmRPdxcWZUJkw5LW6XNzjwk9GaUh1bCunxJeqNhXoWuKc7?filename=fase-2-germinando.json",
-        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/fase-3-primeras-hojas.json"
-        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/fase-4-creciendo-1.json"
-        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/fase-5-creciendo-2.json"
-        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/fase-6-florecida.json"
-        "https://ipfs.io/ipfs/QmYaTsyxTDnrG4toc8721w62rL4ZBKXQTGj9c9Rpdrntou/fase-7-frutos.json"
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-1-semilla.json",
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-2-germinando.json",
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-3-primeras-hojas.json"
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-4-creciendo-1.json"
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-5-creciendo-2.json"
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-6-florecida.json"
+        "https://ipfs.io/ipfs/Qmdjp2MeudyZHkxe8oaHAcPjkwYV4iU5tn62c4cZaWFMuj/fase-7-frutos.json"
     ]; 
 
     uint256 lastTimeStamp;
     uint256 interval;
 
-    constructor(uint _interval) ERC721("Flower Platzi", "fPLTZ") {
-        interval = _interval;
+    constructor(uint _interval) ERC721("Flower Tomkat_CR", "dFCR1") {
+        interval = _interval; // in seconds
         lastTimeStamp = block.timestamp;
     }
 
